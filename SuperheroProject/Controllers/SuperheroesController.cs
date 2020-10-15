@@ -35,7 +35,8 @@ namespace SuperheroProject.Controllers
         // GET: SuperheroesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Superhero superhero = db.Superheroes.Find(id);
+            return View(superhero);
         }
 
         // GET: SuperheroesController/Create
@@ -65,7 +66,9 @@ namespace SuperheroProject.Controllers
         // GET: SuperheroesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Superhero superhero = db.Superheroes.Find(id);
+
+            return View(superhero);
         }
 
         // POST: SuperheroesController/Edit/5
@@ -75,6 +78,7 @@ namespace SuperheroProject.Controllers
         {
             try
             {
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
