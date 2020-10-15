@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -21,8 +22,14 @@ namespace SuperheroProject.Controllers
         // GET: SuperheroesController
         public ActionResult Index()
         {
-            
-            return View(db);
+            List<Superhero> superheroes = new List<Superhero>();
+
+            foreach (Superhero superhero in db.Superheroes)
+            {
+                superheroes.Add(superhero);
+            }
+
+            return View(superheroes);
         }
 
         // GET: SuperheroesController/Details/5
