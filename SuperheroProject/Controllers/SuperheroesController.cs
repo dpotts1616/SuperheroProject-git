@@ -76,9 +76,10 @@ namespace SuperheroProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Superhero superhero)
         {
-            try
-            {
-                
+            try {
+
+                db.Superheroes.Update(superhero);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -90,7 +91,8 @@ namespace SuperheroProject.Controllers
         // GET: SuperheroesController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Superhero superhero = db.Superheroes.Find(id);
+            return View(superhero);
         }
 
         // POST: SuperheroesController/Delete/5
@@ -100,6 +102,8 @@ namespace SuperheroProject.Controllers
         {
             try
             {
+                db.Superheroes.Remove(superhero);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
